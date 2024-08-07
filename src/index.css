@@ -2,9 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: gilroy ;
+  font-family: gilroy;
 }
+
+.header {
+  font-size: 20px;
+  padding: 30px 50px;
+  font-weight: 500;
+}
+
+.footer{
+  width: 100%;
+  height: 30vh;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.footer-copyright {
+  width: 100%;
+  height: 40px;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

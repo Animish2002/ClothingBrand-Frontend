@@ -1,15 +1,15 @@
-import React from "react"
-
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Pages/LandingPage/Home.jsx";
 
 function App() {
   return (
-    <>
-      <div>
-        <h4 className="text-3xl">WICKWEAR</h4>
-      </div>
-      
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
