@@ -1,12 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <section id="header">
       <div className="flex items-center justify-between header">
-        <div>
-          <h1 className="text-3xl font-bold">WICKWEAR</h1>
-        </div>
+        <Link to={"/"}>
+          <div>
+            <h1
+              title="WickWear"
+              id="title"
+              className="text-3xl font-bold cursor-pointer title"
+            >
+              WICKWEAR
+            </h1>
+          </div>
+        </Link>
         <ul className="flex gap-10 items-center font-medium">
           <li>
             <form class="flex items-center max-w-sm mx-auto">
@@ -48,7 +57,6 @@ const Header = () => {
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   color="#000"
-             
                   viewBox="0 0 20 20"
                 >
                   <path
@@ -64,10 +72,25 @@ const Header = () => {
             </form>
           </li>
 
-          <li className="cursor-pointer ">Home</li>
-          <li className="cursor-pointer">About</li>
-          <li className="cursor-pointer">Log in</li>
-          <li className="cursor-pointer">Cart🛒</li>
+          <Link to={"/"}>
+            {" "}
+            <li title="home" className="cursor-pointer ">
+              Home
+            </li>
+          </Link>
+
+          <li title="about us" className="cursor-pointer">
+            About
+          </li>
+          <Link to={"/log-in"}>
+            <li title="log in" className="cursor-pointer">
+              Log in
+            </li>
+          </Link>
+
+          <li title="view cart" className="cursor-pointer">
+            Cart🛒
+          </li>
         </ul>
       </div>
     </section>

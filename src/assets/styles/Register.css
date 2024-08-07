@@ -1,0 +1,8 @@
+.register-form{
+    background-color: rgba(0, 0, 0, 0.034);
+    box-shadow: 22px 21px 21px 13px rgba(0,0,0,0.1);
+    
+}
+.register-form h1{
+    font-family: gilroy, 'Courier New', Courier, monospace;
+}
