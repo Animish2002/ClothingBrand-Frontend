@@ -45,12 +45,12 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen flex justify-center">
+      <div className="min-h-screen flex justify-center ">
         <div className="relative w-full">
           <img
             src={images[activeImageIndex]}
             alt={`carousel-image-${activeImageIndex}`}
-            className="w-full h-auto object-contain carousel-images"
+            className=" object-contain carousel-images"
           />
           <div className="absolute top-[40%] left-0 right-0 flex justify-between transform -translate-y-1/2">
             <button

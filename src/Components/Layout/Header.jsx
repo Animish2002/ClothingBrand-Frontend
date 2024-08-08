@@ -74,21 +74,23 @@ const Header = () => {
 
           <Link to={"/"}>
             {" "}
-            <li title="home" className="cursor-pointer ">
+            <li title="home" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300">
               Home
             </li>
           </Link>
 
-          <li title="about us" className="cursor-pointer">
-            About
-          </li>
+          <Link to={"/about"}>
+            <li title="about us" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300">
+              About
+            </li>
+          </Link>
           <Link to={"/log-in"}>
-            <li title="log in" className="cursor-pointer">
+            <li title="log in" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300">
               Log in
             </li>
           </Link>
 
-          <li title="view cart" className="cursor-pointer">
+          <li title="view cart" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300">
             Cart🛒
           </li>
         </ul>

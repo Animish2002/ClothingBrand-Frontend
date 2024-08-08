@@ -1,0 +1,70 @@
+.about-us-container {
+  padding: 20px;
+  max-width: 140vh;
+  margin: 0 auto;
+  font-family: "Arial", sans-serif;
+  color: #333;
+  /* background-color: #f8f8f8; */
+}
+
+.about-section {
+  margin-bottom: 40px;
+  padding: 40px 0px 0px 0px;
+}
+
+.section-title {
+  font-size: 34px;
+  margin-bottom: 10px;
+  color: #000;
+  font-family: "John Wick", sans-serif;
+  font-weight: 800;
+}
+
+p .about{
+  line-height: 1.6;
+  margin-bottom: 15px;
+  padding: 0px 10px 0px 10px;
+}
+
+.quote {
+  font-style: italic;
+  font-size: 18px;
+  margin: 20px 0;
+  color: #555;
+}
+
+blockquote {
+  padding-left: 20px;
+  border-left: 4px solid #ccc;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 20px;
+  }
+
+  p,
+  .quote {
+    font-size: 16px;
+  }
+}
+
+.image2 {
+  object-fit: cover;
+}
+img {
+ 
+  box-shadow: 12px 22px 15px 0px rgba(0,0,0,0.1);
+}
+.image1{
+  transform: rotate(2.4deg);
+  transition: .5s ease-in-out;
+}
+.image2{
+  transform: rotate(-2.4deg);
+  transition: .5s ease-in-out;
+}
+.image3{
+  transform: rotate(2.4deg);
+  transition: .5s ease-in-out;
+}
