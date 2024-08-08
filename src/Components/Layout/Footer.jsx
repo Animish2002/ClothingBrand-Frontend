@@ -2,39 +2,125 @@ import React from "react";
 import { GrInstagram } from "react-icons/gr";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaFacebook, FaYoutube } from "react-icons/fa";
-
+import logo from "../../assets/images/logo1.jpeg";
 const Footer = () => {
   return (
     <>
       <div className="footer">
         <div className="p-5 absolute left-0 top-0">
-          <h1 className="text-5xl font-medium">WickWear</h1>
-          <p className="text-base font-light ml-7">Dress with Precision</p>
+          <h1 className="text-5xl font-medium">
+            <img src={logo}  className="w-[210px] " alt="logo"/>
+          </h1>
+         
         </div>
         <div className="grid grid-cols-3 w-[800px] p-6">
           <span>
-            <p title="FAQs" className="py-1 hover:underline cursor-pointer hover:text-blue-500">FAQs</p>
-            <p title="About Us" className="py-1 hover:underline cursor-pointer hover:text-blue-500">About Us</p>
-            <p title="contact" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Contact US</p>
-            <p title="Privacy Policy" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Privacy Policy</p>
-            <p title="Terms & Conditions" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Terms & Conditions</p>
+            <p
+              title="FAQs"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              FAQs
+            </p>
+            <p
+              title="About Us"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              About Us
+            </p>
+            <p
+              title="contact"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Contact US
+            </p>
+            <p
+              title="Privacy Policy"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Privacy Policy
+            </p>
+            <p
+              title="Terms & Conditions"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Terms & Conditions
+            </p>
           </span>
           <span>
-            <p title="Sales" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Sales</p>
-            <p title="Support" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Support</p>
-            <p title="Size Chart" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Size Chart</p>
-            <p title="Style Guide" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Style Guide</p>
-            <p title="Size Chart" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Size Chart</p>
-            <p title="Style Guide" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Style Guide</p>
+            <p
+              title="Sales"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Sales
+            </p>
+            <p
+              title="Support"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Support
+            </p>
+            <p
+              title="Size Chart"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Size Chart
+            </p>
+            <p
+              title="Style Guide"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Style Guide
+            </p>
+            <p
+              title="Size Chart"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Size Chart
+            </p>
+            <p
+              title="Style Guide"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Style Guide
+            </p>
           </span>
           <span>
-            <p title="Suits" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Suits</p>
-            <p title="Blazers & Jackets" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Blazers & Jackets</p>
-            <p title="Trousers" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Trousers</p>
-            <p title="Wallets" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Wallets</p>
-            <p title="Ties & Bowties" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Ties & Bowties</p>
-            <p title="Dress Shirts" className="py-1 hover:underline cursor-pointer hover:text-blue-500">Dress Shirts</p>
-          
+            <p
+              title="Suits"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Suits
+            </p>
+            <p
+              title="Blazers & Jackets"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Blazers & Jackets
+            </p>
+            <p
+              title="Trousers"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Trousers
+            </p>
+            <p
+              title="Wallets"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Wallets
+            </p>
+            <p
+              title="Ties & Bowties"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Ties & Bowties
+            </p>
+            <p
+              title="Dress Shirts"
+              className="py-1 hover:underline cursor-pointer hover:text-blue-500"
+            >
+              Dress Shirts
+            </p>
           </span>
         </div>
         <div className="absolute right-0 top-4 px-10">
