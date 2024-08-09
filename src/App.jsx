@@ -10,8 +10,10 @@ import PageNotFound from "./Pages/PageNotFound.jsx";
 import About from "./Pages/About.jsx";
 import Contact from "./Pages/Contact.jsx";
 import StyleGuide from "./Pages/StyleGuide.jsx";
+import Loader from "./Pages/Loader.jsx";
 
 function App() {
+  
   return (
     <>
       <Router>
