@@ -11,9 +11,12 @@ import About from "./Pages/About.jsx";
 import Contact from "./Pages/Contact.jsx";
 import StyleGuide from "./Pages/StyleGuide.jsx";
 import Loader from "./Pages/Loader.jsx";
+import ProductForm from "./Pages/Admin/ProductForm.jsx";
+import EditProductInfo from "./Pages/Admin/EditProductInfo.jsx";
+import Cart from "./Pages/User/Cart.jsx";
+import EditAccountDetails from "./Pages/User/EditAccountDetails.jsx";
 
 function App() {
-  
   return (
     <>
       <Router>
@@ -26,6 +29,14 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/styleGuide" element={<StyleGuide />} />
+
+          {/* Admin Pages */}
+          <Route path="/productForm" element={<ProductForm />} />
+          <Route path="/editProduct" element={<EditProductInfo />} />
+
+          {/* User Pages */}
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/editAccount" element={<EditAccountDetails />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>

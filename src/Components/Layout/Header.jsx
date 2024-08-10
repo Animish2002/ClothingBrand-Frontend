@@ -74,25 +74,39 @@ const Header = () => {
 
           <Link to={"/home"}>
             {" "}
-            <li title="home" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style">
+            <li
+              title="home"
+              className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style"
+            >
               Home
             </li>
           </Link>
 
           <Link to={"/about"}>
-            <li title="about us" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style">
+            <li
+              title="about us"
+              className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style"
+            >
               About
             </li>
           </Link>
           <Link to={"/log-in"}>
-            <li title="log in" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style">
+            <li
+              title="log in"
+              className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style"
+            >
               Log in
             </li>
           </Link>
 
-          <li title="view cart" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style">
-            Cart🛒
-          </li>
+          <Link to={"/cart"}>
+            <li
+              title="view cart"
+              className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style"
+            >
+              Cart🛒
+            </li>
+          </Link>
         </ul>
       </div>
     </section>

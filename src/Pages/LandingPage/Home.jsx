@@ -7,18 +7,22 @@ import trousers from "../../assets/images/trousers.jpg";
 import wallets from "../../assets/images/wallets.jpg";
 import tieBow from "../../assets/images/bowties.jpeg";
 import dress from "../../assets/images/dressWear.jpeg";
+import jw1 from "../../assets/images/22.jpg";
+import jw2 from "../../assets/images/jwimage1.png";
+import jw3 from "../../assets/images/john-wick-gallery-03.jpg";
 import "../../assets/styles/Home.css";
 
 import { Link } from "react-router-dom";
 
 const Home = () => {
   const images = [
+    `${jw1}`,
     "https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1483118714900-540cf339fd46?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://plus.unsplash.com/premium_photo-1661313659755-f716c84bddd3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1425421669292-0c3da3b8f529?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://plus.unsplash.com/premium_photo-1658506811178-9cc8eeb0ca06?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://static01.nyt.com/images/2019/05/17/arts/johnwickaction1/johnwickaction1-jumbo.jpg?quality=75&auto=webp",
+    `${jw3}`,
+    `${jw2}`,
   ];
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -59,7 +63,7 @@ const Home = () => {
           <img
             src={images[activeImageIndex]}
             alt={`carousel-image-${activeImageIndex}`}
-            className=" object-contain carousel-images"
+            className="carousel-images"
           />
           <div className="absolute top-[50%] left-0 right-0 flex justify-between transform -translate-y-1/2">
             <button
@@ -105,7 +109,9 @@ const Home = () => {
                   alt="blazers & jackets"
                   className="collection-image"
                 />
-                <span className="collection-text font-style">Blazers & Jackets</span>
+                <span className="collection-text font-style">
+                  Blazers & Jackets
+                </span>
               </div>
             </Link>
             <Link to="/trousers">
@@ -131,7 +137,9 @@ const Home = () => {
                   alt="ties & bowties"
                   className="collection-image"
                 />
-                <span className="collection-text font-style">Ties & Bowties</span>
+                <span className="collection-text font-style">
+                  Ties & Bowties
+                </span>
               </div>
             </Link>
             <Link to="/dress">

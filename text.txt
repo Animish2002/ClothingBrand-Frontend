@@ -1,0 +1,135 @@
+To create routes according to different user roles like admin and customer, you can set up protected routes using higher-order components (HOCs) or context to handle the authentication and role-based access. Here's how you can organize it:
+
+1. **Create HOCs or Components for Protected Routes**: You’ll need to create a component that checks if the user is authenticated and has the appropriate role before allowing them to access certain routes.
+
+2. **Define Role-Based Routes**: Set up routes specifically for `Admin` and `Customer` users.
+
+Below is a basic example that demonstrates how you might set this up:
+
+### 1. Create a Protected Route Component
+
+```jsx
+import React from "react";
+import { Navigate } from "react-router-dom";
+
+// Dummy function to get the current user's role (Admin, Customer, etc.)
+const getUserRole = () => {
+  // Replace with actual authentication logic
+  return localStorage.getItem("userRole");
+};
+
+const ProtectedRoute = ({ children, role }) => {
+  const userRole = getUserRole();
+
+  if (!userRole || userRole !== role) {
+    return <Navigate to="/log-in" replace />;
+  }
+
+  return children;
+};
+
+export default ProtectedRoute;
+```
+
+### 2. Update the `App.js` with Role-Based Routing
+
+```jsx
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer, toast, Flip } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Home from "./Pages/LandingPage/Home.jsx";
+import NewRegistration from "./Pages/NewRegistration.jsx";
+import SignUp from "./Pages/SignUp.jsx";
+import Login from "./Pages/Login.jsx";
+import PageNotFound from "./Pages/PageNotFound.jsx";
+import About from "./Pages/About.jsx";
+import Contact from "./Pages/Contact.jsx";
+import StyleGuide from "./Pages/StyleGuide.jsx";
+import Loader from "./Pages/Loader.jsx";
+import ProductForm from "./Pages/Admin/ProductForm.jsx";
+import ProtectedRoute from "./Components/ProtectedRoute"; // Assuming you place it in Components
+
+function App() {
+  return (
+    <>
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Loader />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/register" element={<NewRegistration />} />
+          <Route path="/log-in" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/styleGuide" element={<StyleGuide />} />
+          
+          {/* Admin Routes */}
+          <Route 
+            path="/productForm" 
+            element={
+              <ProtectedRoute role="Admin">
+                <ProductForm />
+              </ProtectedRoute>
+            } 
+          />
+
+          {/* Add more admin-specific routes here */}
+
+          {/* Customer Routes */}
+          <Route 
+            path="/customer-dashboard" 
+            element={
+              <ProtectedRoute role="Customer">
+                {/* Replace with your Customer Dashboard component */}
+                <CustomerDashboard />
+              </ProtectedRoute>
+            } 
+          />
+
+          {/* Add more customer-specific routes here */}
+
+          {/* Catch-all Route */}
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </Router>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Flip}
+      />
+    </>
+  );
+}
+
+export default App;
+```
+
+### 3. Dummy Authentication Role Logic (Optional)
+
+To test the role-based routing, you can set up a basic role management logic, such as storing the role in local storage after a successful login:
+
+```javascript
+// Example: Setting the role in local storage
+localStorage.setItem("userRole", "Admin"); // or "Customer"
+
+// To retrieve the role
+const userRole = localStorage.getItem("userRole");
+```
+
+### 4. Notes:
+
+- **Authentication Logic**: The provided example assumes you have a method to determine the user's role (`getUserRole`). In real-world applications, this would come from a state management system like Redux, Context API, or a direct API call to your authentication service.
+  
+- **Role-Specific Components**: Ensure you have different components or pages tailored to each user role, e.g., `AdminDashboard`, `CustomerDashboard`, etc.
+
+This setup gives you the flexibility to restrict certain parts of your application based on user roles, providing a better user experience and more secure access control.
