@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <section id="header">
       <div className="flex items-center justify-between header">
-        <Link to={"/"}>
+        <Link to={"/home"}>
           <div>
             <h1
               title="WickWear"
@@ -72,25 +72,25 @@ const Header = () => {
             </form>
           </li>
 
-          <Link to={"/"}>
+          <Link to={"/home"}>
             {" "}
-            <li title="home" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300">
+            <li title="home" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style">
               Home
             </li>
           </Link>
 
           <Link to={"/about"}>
-            <li title="about us" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300">
+            <li title="about us" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style">
               About
             </li>
           </Link>
           <Link to={"/log-in"}>
-            <li title="log in" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300">
+            <li title="log in" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style">
               Log in
             </li>
           </Link>
 
-          <li title="view cart" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300">
+          <li title="view cart" className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style">
             Cart🛒
           </li>
         </ul>
