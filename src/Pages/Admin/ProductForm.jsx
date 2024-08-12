@@ -53,16 +53,7 @@ const ProductForm = () => {
               placeholder="Product Discount (%)"
               className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic"
             />
-            <input
-              type="text"
-              placeholder="SKU (Stock Keeping Unit)"
-              className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic"
-            />
-            <input
-              type="number"
-              placeholder="Shipping Weight (g)"
-              className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic"
-            />
+           
             <div className="col-span-2">
               <label className="block text-sm font-medium text-gray-700">
                 Upload Product Images
@@ -71,7 +62,7 @@ const ProductForm = () => {
                 type="file"
                 accept="image/*"
                 multiple
-                className="mt-2 p-2 border-2 border-black"
+                className="mt-2 p-2 border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic"
               />
             </div>
             <textarea
@@ -85,17 +76,14 @@ const ProductForm = () => {
               rows="2"
             />
             <div className="col-span-2 flex items-center gap-4">
-              <label className="flex items-center">
-                <input type="checkbox" className="mr-2 w-10" />
-                Featured Product
-              </label>
+             
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2 w-10" />
                 Active Status
               </label>
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2 w-10" />
-                Allow Reviews
+                InActive Status
               </label>
             </div>
           </div>
