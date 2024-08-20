@@ -13,6 +13,7 @@ import jw3 from "../../assets/images/john-wick-gallery-03.jpg";
 import "../../assets/styles/Home.css";
 
 import { Link } from "react-router-dom";
+import ProductListing from "./ProductListing";
 
 const Home = () => {
   const images = [
@@ -59,13 +60,13 @@ const Home = () => {
   return (
     <Layout>
       <div className="h-full">
-        <div className="relative w-full">
+        <div className="relative flex justify-center mt-4">
           <img
             src={images[activeImageIndex]}
             alt={`carousel-image-${activeImageIndex}`}
             className="carousel-images"
           />
-          <div className="absolute top-[50%] left-0 right-0 flex justify-between transform -translate-y-1/2">
+          <div className="absolute top-[50%] left-[35px] right-[35px] flex justify-between transform -translate-y-1/2">
             <button
               onClick={handlePrevious}
               className="bg-black bg-opacity-50 text-white p-2 rounded-full"
@@ -87,7 +88,7 @@ const Home = () => {
         >
           {isAutoPlaying ? "Pause" : "Play"}
         </button> */}
-        <div className="mt-4 py-20">
+        <div className="mt-4 pt-16 pb-8">
           <h1 className="text-4xl font-bold text-center font-style">
             Fearured Collections
           </h1>
@@ -149,6 +150,14 @@ const Home = () => {
               </div>
             </Link>
           </div>
+        </div>
+        <div className="min-h-screen flex flex-col items-center">
+          <div className="text-center mb-3">
+            <h1 className="text-4xl font-style underline uppercase">
+              Assassin's New Drop
+            </h1>
+          </div>
+          <ProductListing />
         </div>
       </div>
     </Layout>

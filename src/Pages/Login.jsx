@@ -6,6 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -44,9 +45,16 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
+        `${import.meta.env.VITE_API_URL}/auth/login`,
         formData
       );
+      if (response.data) {
+        const authToken = response.data.jwtToken;
+        const decodedToken = jwtDecode(authToken);
+        localStorage.setItem("authToken", authToken);
+        localStorage.setItem("sessionId", decodedToken.userId);
+        localStorage.setItem("role", decodedToken.role);
+      }
       toast.success("Login successful!", {
         position: "top-right",
         autoClose: 2000, // Change this to 2000 milliseconds (2 seconds)
@@ -61,7 +69,7 @@ const Login = () => {
       setIsLoading(false);
       // Redirect to the "/" page after 2 seconds
       setTimeout(() => {
-        navigate("/");
+        navigate("/home");
       }, 2000);
     } catch (error) {
       toast.error("Login failed. Please try again.", {

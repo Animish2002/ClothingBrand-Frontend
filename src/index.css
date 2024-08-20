@@ -7,17 +7,19 @@
   padding: 0;
   box-sizing: border-box;
   font-family: gilroy;
+  scroll-behavior: smooth;
+
 }
 
 .header {
   font-size: 20px;
-  padding: 30px 50px;
+  padding: 20px 50px;
   font-weight: 500;
 }
-#title{
-  font-family: gilroy ;
+#title {
+  font-family: gilroy;
 }
-.footer{
+.footer {
   width: 100%;
   height: 30vh;
   background-color: #000;
@@ -37,13 +39,6 @@
   align-items: center;
 }
 
-.carousel-images{
-  width: 100%;
-  height:700px;
-  object-fit: cover;
-  
-}
-
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -53,15 +48,20 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
-button{
-  font-family: gilroy, 'Courier New', Courier, monospace;
+button {
+  font-family: gilroy, "Courier New", Courier, monospace;
   font-weight: 800;
 }
 
-.font-style{
-  font-family: gilroy, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.font-style {
+  font-family: gilroy, "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+    sans-serif;
+}
+
+.cards-border {
+  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.2);
 }

@@ -2,6 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const isAuthenticated = !!localStorage.getItem("authToken");
+  const handleLogout = () => {
+    // Clear user data and token from local storage
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("sessionId");
+    localStorage.removeItem("role");
+
+    // Redirect to home page after logout
+    navigate("/home");
+  };
+  
   return (
     <section id="header">
       <div className="flex items-center justify-between header">
@@ -90,14 +101,24 @@ const Header = () => {
               About
             </li>
           </Link>
-          <Link to={"/log-in"}>
+          {isAuthenticated ? (
             <li
-              title="log in"
+              title="log out"
               className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style"
+              onClick={handleLogout}
             >
-              Log in
+              Log out
             </li>
-          </Link>
+          ) : (
+            <Link to={"/log-in"}>
+              <li
+                title="log in"
+                className="cursor-pointer hover:underline hover:scale-110 transition-all ease-in duration-300 font-style"
+              >
+                Log in
+              </li>
+            </Link>
+          )}
 
           <Link to={"/cart"}>
             <li
