@@ -48,29 +48,43 @@ const Login = () => {
         `${import.meta.env.VITE_API_URL}/auth/login`,
         formData
       );
+
       if (response.data) {
         const authToken = response.data.jwtToken;
         const decodedToken = jwtDecode(authToken);
+        const role = decodedToken.role; // Extract role from decoded token
         localStorage.setItem("authToken", authToken);
         localStorage.setItem("sessionId", decodedToken.userId);
-        localStorage.setItem("role", decodedToken.role);
+        localStorage.setItem("role", role);
+
+        console.log("Login successful", response.data);
+        setIsLoading(false);
+
+        // Redirect to the appropriate page based on the role
+        toast.success(`Login successful ${role}!`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+          transition: Flip,
+        });
+
+        setTimeout(() => {
+          switch (role) {
+            case "admin":
+              navigate("/admin");
+              break;
+            case "user":
+              navigate("/");
+              break;
+            default:
+              navigate("/"); // Default redirection if the role is unrecognized
+          }
+        }, 3000);
       }
-      toast.success("Login successful!", {
-        position: "top-right",
-        autoClose: 2000, // Change this to 2000 milliseconds (2 seconds)
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "colored",
-        transition: Flip,
-      });
-      console.log("Login successful", response.data);
-      setIsLoading(false);
-      // Redirect to the "/" page after 2 seconds
-      setTimeout(() => {
-        navigate("/home");
-      }, 2000);
     } catch (error) {
       toast.error("Login failed. Please try again.", {
         position: "top-right",
@@ -82,6 +96,7 @@ const Login = () => {
         theme: "colored",
         transition: Flip,
       });
+
       console.error("Login failed", error.response?.data || error.message);
       setIsLoading(false);
     }

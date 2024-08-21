@@ -15,10 +15,18 @@ import ProductForm from "./Pages/Admin/ProductForm.jsx";
 import EditProductInfo from "./Pages/Admin/EditProductInfo.jsx";
 import Cart from "./Pages/User/Cart.jsx";
 import EditAccountDetails from "./Pages/User/EditAccountDetails.jsx";
+import { AuthProvider } from "./utils/AuthContext.jsx";
+import ProtectedRoute from "./utils/ProtectedRoute.jsx";
+import ProductListing from "./Pages/LandingPage/ProductListing.jsx";
+
+import Order from "./Pages/Admin/Order.jsx";
+import AllUserList from "./Pages/Admin/AllUserList.jsx";
+import AddProductCategory from "./Pages/Admin/AddProductCategory.jsx";
+import AdminDashboard from "./Pages/Admin/AdminDashboard.jsx";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Loader />} />
@@ -31,8 +39,14 @@ function App() {
           <Route path="/styleGuide" element={<StyleGuide />} />
 
           {/* Admin Pages */}
-          <Route path="/productForm" element={<ProductForm />} />
-          <Route path="/editProduct" element={<EditProductInfo />} />
+          <Route path="/admin" element={<AdminDashboard />}>
+            <Route path="productForm" element={<ProductForm />} />
+            <Route path="editProduct" element={<EditProductInfo />} />
+            <Route path="productListing" element={<ProductListing />} />
+            <Route path="orders" element={<Order />} />
+            <Route path="allUsers" element={<AllUserList />} />
+            <Route path="addProductCategory" element={<AddProductCategory />} />
+          </Route>
 
           {/* User Pages */}
           <Route path="/cart" element={<Cart />} />
@@ -53,7 +67,7 @@ function App() {
         theme="colored"
         transition={Flip}
       />
-    </>
+    </AuthProvider>
   );
 }
 

@@ -2,6 +2,7 @@ import React from "react";
 
 const ProductListing = () => {
   return (
+    <>
     <div className="grid grid-cols-4 gap-6 mb-6 p-6 w-[90%]">
       {[...Array(10)].map((_, index) => (
         <div key={index} className="w-[300px] h-[420px] cards-border flex flex-col">
@@ -22,6 +23,7 @@ const ProductListing = () => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 

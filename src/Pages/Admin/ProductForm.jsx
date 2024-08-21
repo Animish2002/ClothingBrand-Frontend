@@ -1,9 +1,10 @@
 import React from "react";
 import Layout from "../../Components/Layout/Layout";
+import AdminHeader from "../../Components/Layout/AdminHeader";
 
 const ProductForm = () => {
   return (
-    <Layout>
+    <>
       <div className="h-[110vh] ">
         <div className="p-4 flex flex-col justify-center">
           <h1 className="text-2xl font-style">Add Product Details</h1>
@@ -53,7 +54,7 @@ const ProductForm = () => {
               placeholder="Product Discount (%)"
               className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic"
             />
-           
+
             <div className="col-span-2">
               <label className="block text-sm font-medium text-gray-700">
                 Upload Product Images
@@ -76,7 +77,6 @@ const ProductForm = () => {
               rows="2"
             />
             <div className="col-span-2 flex items-center gap-4">
-             
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2 w-10" />
                 Active Status
@@ -97,7 +97,7 @@ const ProductForm = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 
