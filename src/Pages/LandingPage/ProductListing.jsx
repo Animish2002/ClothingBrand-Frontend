@@ -1,29 +1,50 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const ProductListing = () => {
+  const [products, setProducts] = useState([]);
+
+  const ProdListing = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/products/allProducts`
+      );
+      setProducts(response.data.data);
+      console.log(response.data.data);
+    } catch (error) {
+      console.error("Error fetching product data:", error);
+    }
+  };
+
+  useEffect(() => {
+    ProdListing();
+  }, []);
+
   return (
-    <>
-    <div className="grid grid-cols-4 gap-6 mb-6 p-6 w-[90%]">
-      {[...Array(10)].map((_, index) => (
-        <div key={index} className="w-[300px] h-[420px] cards-border flex flex-col">
-          <div className="relative h-[358px] overflow-hidden group">
-            <img
-              src="https://m.media-amazon.com/images/I/71Ebmh3i88L._AC_SX466_.jpg"
-              alt="Product"
-              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gray-200 opacity-0 group-hover:opacity-0 transition-opacity duration-300"></div>
+    <div className="container mx-auto p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {products.map((product, index) => (
+          <div key={index} className="w-[290px] h-[440px] cards-border flex flex-col">
+            <div className="relative h-[378px] overflow-hidden group">
+              <img
+                src={
+                  "https://www.thearvindstore.com/wp-content/uploads/2019/08/slim_fit_blazer.jpg"
+                }
+                alt={product.productName}
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gray-200 opacity-0 group-hover:opacity-0 transition-opacity duration-300"></div>
+            </div>
+            <div className="px-5 pt-2">
+              <span className="font-style">{product.productName}</span>
+            </div>
+            <div className="px-5">
+              <span className="font-style">${product.productPrice}</span>
+            </div>
           </div>
-          <div className="px-5">
-            <span className="font-style">Polo Ralph Lauren</span>
-          </div>
-          <div className="px-5">
-            <span className="font-style">Rs. 599</span>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-    </>
   );
 };
 

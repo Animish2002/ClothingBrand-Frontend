@@ -22,31 +22,31 @@ const AdminDashboard = () => {
             <ul className="flex flex-col gap-4 py-4">
               <Link to="productListing">
                 <li className="py-1.5 px-10 border-t-2 border-b-2 border-l-2 border-[#c586a5] hover:bg-[#ffebf5]">
-                  <TiThListOutline className="inline" />
+                  <TiThListOutline className="inline text-xl" />
                   &nbsp; List Items
                 </li>
               </Link>
               <Link to="orders">
                 <li className="py-1.5 px-10 border-t-2 border-b-2 border-l-2 border-[#c586a5] hover:bg-[#ffebf5]">
-                  <TbTruckDelivery className="inline" />
+                  <TbTruckDelivery className="inline text-xl" />
                   &nbsp; Orders
                 </li>
               </Link>
               <Link to="allUsers">
                 <li className="py-1.5 px-10 border-t-2 border-b-2 border-l-2 border-[#c586a5] hover:bg-[#ffebf5]">
-                  <MdAddCircleOutline className="inline" />
+                  <MdAddCircleOutline className="inline text-xl" />
                   &nbsp; All Users
                 </li>
               </Link>
               <Link to="productForm">
                 <li className="py-1.5 px-10 border-t-2 border-b-2 border-l-2 border-[#c586a5] hover:bg-[#ffebf5]">
-                  <MdAddCircleOutline className="inline" />
+                  <MdAddCircleOutline className="inline text-xl" />
                   &nbsp; Add items
                 </li>
               </Link>
               <Link to="addProductCategory">
                 <li className="py-1.5 px-2 border-t-2 border-b-2 border-l-2 border-[#c586a5] hover:bg-[#ffebf5]">
-                  <MdAddCircleOutline className="inline" />
+                  <MdAddCircleOutline className="inline text-xl" />
                   &nbsp; Add Product Category
                 </li>
               </Link>

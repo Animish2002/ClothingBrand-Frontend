@@ -11,23 +11,30 @@ const NewRegistration = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    address: "",
-    pinCode: "",
     password: "",
     confirmPassword: "",
+    address: {
+      address1: "",
+      city: "",
+      state: "",
+      country: "",
+      pinCode: "",
+    },
   });
-  
-  const onClickCancel = () => {
+
+const onClickCancel = () => {
     setFormData({
       name: "",
       email: "",
-      address: "",
+      address1: "",
+      city: "",
+      state: "",
+      country: "",
       pinCode: "",
       password: "",
       confirmPassword: "",
     });
   };
-  
   const [viewPassword, setViewPassword] = useState(false);
   const [confirmviewPassword, setConfirmviewPassword] = useState(false);
 
@@ -38,18 +45,28 @@ const NewRegistration = () => {
   const handlePasswordView2 = () => {
     setConfirmviewPassword(!confirmviewPassword);
   };
-
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    if (name in formData.address) {
+      setFormData({
+        ...formData,
+        address: {
+          ...formData.address,
+          [name]: value,
+        },
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic form validation
     if (formData.password !== formData.confirmPassword) {
       toast.error("Passwords do not match!", {
         position: "top-right",
@@ -101,20 +118,20 @@ const NewRegistration = () => {
   return (
     <Layout>
       <div className="flex justify-center md:p-[60px]">
-        <div className="w-[400px] h-auto">
+        <div className="w-[500px] h-auto">
           <form className="p-4 register-form" onSubmit={handleSubmit}>
             <h1 className="text-2xl mt-2 text-center mb-6 font-bold">
               Register
             </h1>
 
-            <div className="flex flex-col items-center gap-4 mb-4">
+            <div className="flex flex-wrap justify-between gap-4 mb-4">
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Enter your name"
-                className="pl-5 border placeholder:italic border-2 rounded-xl w-[300px] p-[5px] hover:border-indigo-500 focus:border-indigo-500"
+                className="pl-5 border placeholder:italic border-2 rounded-xl w-[220px] p-[5px] hover:border-indigo-500 focus:border-indigo-500"
               />
 
               <input
@@ -123,25 +140,55 @@ const NewRegistration = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your email"
-                className="border placeholder:italic pl-5 border-2 rounded-xl w-[300px] p-[5px] hover:border-indigo-500 focus:border-indigo-500"
+                className="border placeholder:italic pl-5 border-2 rounded-xl w-[220px] p-[5px] hover:border-indigo-500 focus:border-indigo-500"
               />
+
               <input
                 type="text"
-                name="address"
-                value={formData.address}
+                name="address1"
+                value={formData.address1}
                 onChange={handleChange}
                 placeholder="Enter your address"
-                className="border placeholder:italic pl-5 border-2 rounded-xl w-[300px] p-[5px] hover:border-indigo-500 focus:border-indigo-500"
+                className="border placeholder:italic pl-5 border-2 rounded-xl w-[220px] p-[5px] hover:border-indigo-500 focus:border-indigo-500"
               />
+
+              <input
+                type="text"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                placeholder="City"
+                className="border placeholder:italic pl-5 border-2 rounded-xl w-[220px] p-[5px] hover:border-indigo-500 focus:border-indigo-500"
+              />
+
+              <input
+                type="text"
+                name="state"
+                value={formData.state}
+                onChange={handleChange}
+                placeholder="State"
+                className="border placeholder:italic pl-5 border-2 rounded-xl w-[220px] p-[5px] hover:border-indigo-500 focus:border-indigo-500"
+              />
+
+              <input
+                type="text"
+                name="country"
+                value={formData.country}
+                onChange={handleChange}
+                placeholder="Country"
+                className="border placeholder:italic pl-5 border-2 rounded-xl w-[220px] p-[5px] hover:border-indigo-500 focus:border-indigo-500"
+              />
+
               <input
                 type="number"
                 name="pinCode"
                 value={formData.pinCode}
                 onChange={handleChange}
                 placeholder="Pin Code"
-                className="border placeholder:italic pl-5 border-2 rounded-xl w-[300px] p-[5px] hover:border-indigo-500 focus:border-indigo-500"
+                className="border placeholder:italic pl-5 border-2 rounded-xl w-[220px] p-[5px] hover:border-indigo-500 focus:border-indigo-500"
               />
-              <div className="relative w-[300px]">
+
+              <div className="relative w-[220px]">
                 <input
                   type={viewPassword ? "text" : "password"}
                   name="password"
@@ -161,7 +208,8 @@ const NewRegistration = () => {
                   )}
                 </div>
               </div>
-              <div className="relative w-[300px]">
+
+              <div className="relative w-[220px]">
                 <input
                   type={confirmviewPassword ? "text" : "password"}
                   name="confirmPassword"
@@ -182,6 +230,7 @@ const NewRegistration = () => {
                 </div>
               </div>
             </div>
+
             <div className="flex justify-center py-4 gap-4">
               <button
                 type="submit"
