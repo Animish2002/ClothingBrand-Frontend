@@ -16,15 +16,14 @@ import EditProductInfo from "./Pages/Admin/EditProductInfo.jsx";
 import Cart from "./Pages/User/Cart.jsx";
 import EditAccountDetails from "./Pages/User/EditAccountDetails.jsx";
 import { AuthProvider } from "./utils/AuthContext.jsx";
-import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 import ProductListing from "./Pages/LandingPage/ProductListing.jsx";
-
 import Order from "./Pages/Admin/Order.jsx";
 import AllUserList from "./Pages/Admin/AllUserList.jsx";
 import AddProductCategory from "./Pages/Admin/AddProductCategory.jsx";
 import AdminDashboard from "./Pages/Admin/AdminDashboard.jsx";
-import UserDashboard from "./Pages/User/UserDashboard.jsx";
 import Layout from "./Components/Layout/Layout.jsx";
+import ProtectedRoute from "./utils/ProtectedRoute.jsx";
+
 
 function App() {
   return (
@@ -41,7 +40,14 @@ function App() {
           <Route path="/styleGuide" element={<StyleGuide />} />
 
           {/* Admin Pages */}
-          <Route path="/admin" element={<AdminDashboard />}>
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute role="admin">
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          >
             <Route path="productForm" element={<ProductForm />} />
             <Route path="editProduct" element={<EditProductInfo />} />
             <Route path="productListing" element={<ProductListing />} />
@@ -51,7 +57,14 @@ function App() {
           </Route>
 
           {/* User Pages */}
-          <Route path="/user" element={<Layout />}>
+          <Route
+            path="/user"
+            element={
+              <ProtectedRoute role="user">
+                <Layout />
+              </ProtectedRoute>
+            }
+          >
             <Route path="editAccount" element={<EditAccountDetails />} />
           </Route>
           <Route path="cart" element={<Cart />} />
