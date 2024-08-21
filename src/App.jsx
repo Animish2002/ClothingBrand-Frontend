@@ -23,6 +23,8 @@ import Order from "./Pages/Admin/Order.jsx";
 import AllUserList from "./Pages/Admin/AllUserList.jsx";
 import AddProductCategory from "./Pages/Admin/AddProductCategory.jsx";
 import AdminDashboard from "./Pages/Admin/AdminDashboard.jsx";
+import UserDashboard from "./Pages/User/UserDashboard.jsx";
+import Layout from "./Components/Layout/Layout.jsx";
 
 function App() {
   return (
@@ -49,8 +51,10 @@ function App() {
           </Route>
 
           {/* User Pages */}
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/editAccount" element={<EditAccountDetails />} />
+          <Route path="/user" element={<Layout />}>
+            <Route path="editAccount" element={<EditAccountDetails />} />
+          </Route>
+          <Route path="cart" element={<Cart />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>

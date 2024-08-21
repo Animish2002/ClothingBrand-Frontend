@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import Layout from "../../Components/Layout/Layout";
 import AdminHeader from "../../Components/Layout/AdminHeader";
 import { Link } from "react-router-dom";
@@ -7,12 +7,6 @@ import { MdAddCircleOutline } from "react-icons/md";
 import { TiThListOutline } from "react-icons/ti";
 import { TbTruckDelivery } from "react-icons/tb";
 
-// Import your pages/components here
-import ProductListing from "../LandingPage/ProductListing"; // Example import
-import ProductForm from "../Admin/ProductForm"; // Example import
-import Orders from "./Order"; // Example import
-import AllUserList from "./AllUserList"; // Example import
-import AddProductCategory from "./AddProductCategory"; // Example import
 
 const AdminDashboard = () => {
   return (
@@ -62,14 +56,7 @@ const AdminDashboard = () => {
 
         {/* Content area where different components will be rendered */}
         <div className="w-[82%] p-4 overflow-y-auto">
-          <Routes>
-            <Route path="productListing" element={<ProductListing />} />
-            <Route path="orders" element={<Orders />} />
-            <Route path="allUsers" element={<AllUserList />} />
-            <Route path="productForm" element={<ProductForm />} />
-            <Route path="addProductCategory" element={<AddProductCategory />} />
-          
-          </Routes>
+          <Outlet />
         </div>
       </div>
     </>

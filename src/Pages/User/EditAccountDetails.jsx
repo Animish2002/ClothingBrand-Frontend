@@ -47,7 +47,7 @@ const EditAccountDetails = () => {
   };
 
   return (
-    <Layout>
+    <>
       <div className="flex justify-center md:p-[60px]">
         <div className="w-[400px] h-auto">
           <form className="p-4 register-form">
@@ -146,13 +146,12 @@ const EditAccountDetails = () => {
                 Cancel
               </button>
             </div>
-            
           </form>
         </div>
       </div>
 
       <ToastContainer />
-    </Layout>
+    </>
   );
 };
 
