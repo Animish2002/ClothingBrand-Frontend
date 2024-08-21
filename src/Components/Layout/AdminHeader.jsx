@@ -1,9 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../assets/styles/AdminHeader.css";
 
 const AdminHeader = () => {
-    
+  const navigate = useNavigate();
+  const isAuthenticated = !!localStorage.getItem("authToken");
+  const handleLogout = () => {
+    // Clear user data and token from local storage
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("sessionId");
+    localStorage.removeItem("role");
+
+    // Redirect to home page after logout
+    navigate("/");
+  };
   return (
     <div className="flex justify-between px-8 pt-4">
       <div>
@@ -20,10 +30,26 @@ const AdminHeader = () => {
           </div>
         </Link>
       </div>
+
       <div>
-        <button className="bg-gray-600 text-white px-8 py-2 border rounded-3xl">
-          Logout
-        </button>
+        {isAuthenticated ? (
+          <button
+            title="log out"
+            className="bg-gray-600 text-white px-8 py-2 border rounded-3xl"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        ) : (
+          <Link to={"/log-in"}>
+            <button
+              title="log in"
+              className="bg-gray-600 text-white px-8 py-2 border rounded-3xl"
+            >
+              Log in
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
