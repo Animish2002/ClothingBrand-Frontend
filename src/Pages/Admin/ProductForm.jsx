@@ -15,7 +15,7 @@ const ProductForm = () => {
     productMaterial: "",
     productDescription: "",
     productSize: "",
-    productImage: "",
+    productImage: [],
     productColor: "",
     productPrice: "",
     productDiscount: "",
@@ -38,7 +38,7 @@ const ProductForm = () => {
       productColor: "",
       productPrice: "",
       productDiscount: "",
-      productImage: "",
+      productImage: [],
       seoTitle: "",
       metaDescription: "",
       status: true,
@@ -49,7 +49,6 @@ const ProductForm = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
-    // Fetch categories from the API
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
@@ -73,54 +72,85 @@ const ProductForm = () => {
           [fieldName]: e.target.value,
         },
       });
+    } else if (e.target.name === "productImage") {
+      setFormData({
+        ...formData,
+        productImage: [...formData.productImage, e.target.files[0]],
+      });
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
   };
 
   const handleCategoryChange = (e) => {
-    const { value, checked } = e.target;
-    const updatedCategories = { ...formData.productCategory };
+    const selectedCategoryName = e.target.value;
 
-    if (checked) {
-      updatedCategories[value] = true;
-    } else {
-      delete updatedCategories[value];
-    }
+    // Find the selected category object
+    const selectedCategory = categories.find(
+      (category) => category.categoryName === selectedCategoryName
+    );
 
-    setFormData({ ...formData, productCategory: updatedCategories });
+    // Update formData with the selected category's name and description
+    setFormData({
+      ...formData,
+      productCategory: {
+        categoryName: selectedCategoryName,
+        categoryDescription: selectedCategory.categoryDescription,
+      },
+    });
   };
-
-  const handleDropdownToggle = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("authToken");
-      const productCategory = formData.productCategory.map((categoryName) => {
-        const category = categories.find(
-          (c) => c.categoryName === categoryName
-        );
-        return {
-          categoryName,
-          categoryDescription: category?.categoryDescription || "",
-        };
-      });
+
+      // Create a FormData object to handle file uploads and other form data
+      const formDataToSend = new FormData();
+
+      // Append all form data fields
+      formDataToSend.append("productName", formData.productName);
+      formDataToSend.append("productQuantity", formData.productQuantity);
+      formDataToSend.append("productMaterial", formData.productMaterial);
+      formDataToSend.append("productDescription", formData.productDescription);
+      formDataToSend.append("productSize", formData.productSize);
+      formDataToSend.append("productColor", formData.productColor);
+      formDataToSend.append("productPrice", formData.productPrice);
+      formDataToSend.append("productDiscount", formData.productDiscount);
+      formDataToSend.append("seoTitle", formData.seoTitle);
+      formDataToSend.append("metaDescription", formData.metaDescription);
+      formDataToSend.append("status", formData.status);
+
+      // Append productCategory fields
+      formDataToSend.append(
+        "productCategory[categoryName]",
+        formData.productCategory.categoryName
+      );
+      formDataToSend.append(
+        "productCategory[categoryDescription]",
+        formData.productCategory.categoryDescription
+      );
+
+      // Append image files
+      if (formData.productImage.length > 0) {
+        formData.productImage.forEach((image, index) => {
+          formDataToSend.append(`productImage`, image);
+        });
+      } else {
+        console.error("No image file selected");
+      }
+
+      console.log("Form data being sent:", Object.fromEntries(formDataToSend));
+
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/products/addProduct`,
-        {
-          ...formData,
-          productCategory,
-        },
+        formDataToSend,
         {
           headers: {
             Authorization: `${token}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
-      console.log(formData);
 
       toast.success("Product added successfully!", {
         position: "top-right",
@@ -132,7 +162,6 @@ const ProductForm = () => {
         theme: "colored",
         transition: Flip,
       });
-      console.log("Product added successfully", response.data);
     } catch (error) {
       toast.error("Product addition failed. Please try again.", {
         position: "top-right",
@@ -151,9 +180,10 @@ const ProductForm = () => {
     }
   };
 
+  console.log("Form Data:", formData);
+
   return (
     <>
-      return (
       <div className="h-[110vh]">
         <div className="p-4 flex flex-col justify-center">
           <h1 className="text-2xl font-style">Add Product Details</h1>
@@ -172,42 +202,18 @@ const ProductForm = () => {
 
             {/* Product Category Dropdown */}
             <div className="relative">
-              <button
-                type="button"
-                onClick={handleDropdownToggle}
-                className="border-2 border-gray-400 p-[7px] rounded-[10px] w-full text-left flex justify-between items-center hover:border-indigo-500 focus:border-indigo-500 italic"
+              <select
+                name="productCategory.categoryName"
+                onChange={handleCategoryChange}
+                className="border-2 border-gray-400 p-[7px] rounded-[10px] w-full text-left hover:border-indigo-500 focus:border-indigo-500 italic"
               >
-                {formData.productCategory.length
-                  ? "Categories Selected"
-                  : "Select Categories"}
-                <span>
-                  <IoIosArrowDropdown className="text-xl" />
-                </span>
-              </button>
-              {dropdownOpen && (
-                <div
-                  className="absolute border-2 border-gray-400 bg-white rounded-[10px] mt-2 z-10 w-full"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {categories.map((category) => (
-                    <label key={category.id} className="flex items-center p-2">
-                      <input
-                        type="checkbox"
-                        value={category.categoryName}
-                        onChange={handleCategoryChange}
-                        checked={
-                          formData.productCategory[category.categoryName] ||
-                          false
-                        }
-                        className="form-checkbox h-5 w-5 text-green-600"
-                      />
-                      <span className="ml-2 text-gray-700">
-                        {category.categoryName}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              )}
+                <option value="">Select Category</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.categoryName}>
+                    {category.categoryName}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <input
@@ -227,7 +233,6 @@ const ProductForm = () => {
               value={formData.productMaterial}
             />
 
-            {/* Add more input fields as needed */}
             <textarea
               placeholder="Product Description"
               name="productDescription"
@@ -236,9 +241,10 @@ const ProductForm = () => {
               onChange={handleChange}
               value={formData.productDescription}
             />
+
             <input
               type="text"
-              placeholder="Product Size's(S,M,L,XL,2XL,3XL)"
+              placeholder="Product Size (S, M, L, XL, 2XL, 3XL)"
               name="productSize"
               className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic"
               onChange={handleChange}
@@ -246,7 +252,7 @@ const ProductForm = () => {
             />
             <input
               type="text"
-              placeholder="Product Color's"
+              placeholder="Product Color"
               name="productColor"
               className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic"
               onChange={handleChange}
@@ -270,20 +276,19 @@ const ProductForm = () => {
             />
 
             <input
-              type="text"
-              placeholder="Product Image URL"
+              type="file"
               name="productImage"
+              accept="image/*"
               className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic"
               onChange={handleChange}
-              value={formData.productImage}
+              multiple
             />
 
-            {/* SEO Fields */}
-            <textarea
+            <input
+              type="text"
               placeholder="SEO Title"
               name="seoTitle"
-              className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic col-span-2"
-              rows="2"
+              className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic"
               onChange={handleChange}
               value={formData.seoTitle}
             />
@@ -291,46 +296,41 @@ const ProductForm = () => {
               placeholder="Meta Description"
               name="metaDescription"
               className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic col-span-2"
-              rows="2"
+              rows="3"
               onChange={handleChange}
               value={formData.metaDescription}
             />
 
-            {/* Status Checkbox */}
-            <div className="col-span-2">
-              <label className="inline-flex items-center mt-3">
-                <input
-                  type="checkbox"
-                  name="status"
-                  checked={formData.status}
-                  onChange={(e) =>
-                    setFormData({ ...formData, status: e.target.checked })
-                  }
-                  className="form-checkbox h-5 w-5 text-green-600"
-                />
-                <span className="ml-2 text-gray-700">Active Status</span>
-              </label>
+            <div className="flex items-center">
+              <label className="mr-2">Status:</label>
+              <select
+                name="status"
+                className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic"
+                onChange={handleChange}
+                value={formData.status}
+              >
+                <option value={true}>Active</option>
+                <option value={false}>Inactive</option>
+              </select>
             </div>
 
-            <div className="flex justify-center items-center space-x-4 mt-4 col-span-2">
-              <button
-                type="submit"
-                className="bg-[#2A3856] text-white py-[7px] px-[15px] rounded-[10px]"
-              >
-                Add Product
-              </button>
-              <button
-                onClick={resetForm}
-                type="button"
-                className="bg-red-400 text-white py-[7px] px-[15px] rounded-[10px]"
-              >
-                Reset Form
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic col-span-2 bg-blue-500 text-white"
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              onClick={resetForm}
+              className="border-2 border-gray-400 p-[7px] rounded-[10px] hover:border-indigo-500 focus:border-indigo-500 italic col-span-2 bg-red-500 text-white"
+            >
+              Reset
+            </button>
           </form>
+          <ToastContainer />
         </div>
       </div>
-      );
     </>
   );
 };
