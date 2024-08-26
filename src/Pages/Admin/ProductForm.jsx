@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { IoIosArrowDropdown } from "react-icons/io";
 
 const ProductForm = () => {
   const [formData, setFormData] = useState({
@@ -46,7 +45,7 @@ const ProductForm = () => {
   };
 
   const [categories, setCategories] = useState([]);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -179,8 +178,6 @@ const ProductForm = () => {
       );
     }
   };
-
-  console.log("Form Data:", formData);
 
   return (
     <>
@@ -327,6 +324,7 @@ const ProductForm = () => {
             >
               Reset
             </button>
+            
           </form>
           <ToastContainer />
         </div>

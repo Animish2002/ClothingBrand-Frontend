@@ -7,7 +7,6 @@ import { MdAddCircleOutline } from "react-icons/md";
 import { TiThListOutline } from "react-icons/ti";
 import { TbTruckDelivery } from "react-icons/tb";
 
-
 const AdminDashboard = () => {
   return (
     <>
@@ -48,6 +47,11 @@ const AdminDashboard = () => {
                 <li className="py-1.5 px-2 border-t-2 border-b-2 border-l-2 border-[#c586a5] hover:bg-[#ffebf5]">
                   <MdAddCircleOutline className="inline text-xl" />
                   &nbsp; Add Product Category
+                </li>
+              </Link>
+              <Link to="prodCategories">
+                <li className="py-1.5 px-2 border-t-2 border-b-2 border-l-2 border-[#c586a5] hover:bg-[#ffebf5]">
+                  &nbsp; Product Categories
                 </li>
               </Link>
             </ul>

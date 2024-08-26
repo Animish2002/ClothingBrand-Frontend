@@ -23,7 +23,7 @@ import AddProductCategory from "./Pages/Admin/AddProductCategory.jsx";
 import AdminDashboard from "./Pages/Admin/AdminDashboard.jsx";
 import Layout from "./Components/Layout/Layout.jsx";
 import ProtectedRoute from "./utils/ProtectedRoute.jsx";
-
+import ProdCategoryListing from "./Pages/Admin/ProdCategoryListing.jsx";
 
 function App() {
   return (
@@ -54,6 +54,7 @@ function App() {
             <Route path="orders" element={<Order />} />
             <Route path="allUsers" element={<AllUserList />} />
             <Route path="addProductCategory" element={<AddProductCategory />} />
+            <Route path="prodCategories" element={<ProdCategoryListing />} />
           </Route>
 
           {/* User Pages */}

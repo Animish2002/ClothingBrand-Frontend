@@ -24,11 +24,14 @@ const ProductListing = () => {
     <div className="container mx-auto p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {products.map((product, index) => (
-          <div key={index} className="w-[290px] h-[440px] cards-border flex flex-col">
+          <div
+            key={index}
+            className="w-[290px] h-[440px] cards-border flex flex-col"
+          >
             <div className="relative h-[378px] overflow-hidden group">
               <img
-                src={product.productImage[0].url}
-                alt={product.productImage.url}
+                src={product.productImage[0]?.url}  // Use optional chaining to handle undefined
+                alt={product.productName}  // Provide descriptive alt text
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gray-200 opacity-0 group-hover:opacity-0 transition-opacity duration-300"></div>
