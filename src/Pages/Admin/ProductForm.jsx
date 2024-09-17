@@ -141,7 +141,7 @@ const ProductForm = () => {
       console.log("Form data being sent:", Object.fromEntries(formDataToSend));
 
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/products/addProduct`,
+        `${import.meta.env.VITE_API_URL}/products/add-Product`,
         formDataToSend,
         {
           headers: {
